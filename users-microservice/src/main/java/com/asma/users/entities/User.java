@@ -1,5 +1,8 @@
 package com.asma.users.entities;
 import java.util.List;
+
+import org.hibernate.annotations.NaturalId;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +16,10 @@ import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-@Data @NoArgsConstructor @AllArgsConstructor
+
+@Data 
+@NoArgsConstructor 
+@AllArgsConstructor
 @Entity
 public class User {
 @Id
@@ -23,8 +29,11 @@ private Long user_id;
 private String username;
 private String password;
 private Boolean enabled;
+private String email;
+private String code;
  @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") ,
  inverseJoinColumns = @JoinColumn(name="role_id"))
 private List<Role> roles;
+
 }
